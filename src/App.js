@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import TodoHeader from './components/TodoComponents/TodoHeader';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 
@@ -73,9 +74,10 @@ class App extends Component {
   render() {
     console.log(this.state.todoData);
     return (
-      <div>
-        <TodoList todoData={this.state.todoData} toggleTodo={this.toggleTodo} />
+      <div className="container">
+        {/* <TodoHeader /> */}
         <TodoForm addTodo={this.addTodo} clearCompleted={this.clearCompleted} />
+        <TodoList todoData={this.state.todoData} toggleTodo={this.toggleTodo} />
       </div>
     );
   }

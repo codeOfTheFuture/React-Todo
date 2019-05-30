@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import 'react-bootstrap';
 
 class TodoForm extends Component {
   constructor() {
@@ -31,8 +32,10 @@ class TodoForm extends Component {
           value={this.state.task}
           name="task"
         />
-        <button>Add Todo</button>
-        <button onClick={this.props.clearCompleted}>Clear Completed</button>
+        <button variant="primary">Add Todo</button>
+        <button variant="danger" onClick={this.props.clearCompleted}>
+          Clear Completed
+        </button>
       </form>
     );
   }
