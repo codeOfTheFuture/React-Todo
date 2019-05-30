@@ -26,23 +26,47 @@ class App extends Component {
     };
   }
 
-  addTodo = e => {
-    e.preventDefault();
+  toggleTodo = id => {
+    this.setState(prevState => {
+      return {
+        todoData: prevState.todoData.map(todo => {
+          if (todo.id === id) {
+            return {
+              ...todo,
+              completed: !todo.completed
+            };
+          } else {
+            return todo;
+          }
+        })
+      };
+    });
+  };
 
+  addTodo = todoTask => {
     const newTodo = {
-      task: this.state.task,
+      task: todoTask,
       id: Date.now(),
       completed: false
     };
 
-    this.setState({
-      todoData: [...this.state.todoData, newTodo]
+    this.setState(prevState => {
+      return {
+        todoData: [...prevState.todoData, newTodo]
+      };
     });
   };
 
-  handleChanges = event => {
-    this.setState({
-      [event.target.name]: event.target.value
+  clearCompleted = event => {
+    event.preventDefault();
+    this.setState(prevState => {
+      return {
+        todoData: prevState.todoData.filter(todo => {
+          if (!todo.completed) {
+            return todo;
+          }
+        })
+      };
     });
   };
 
@@ -50,12 +74,8 @@ class App extends Component {
     console.log(this.state.todoData);
     return (
       <div>
-        <TodoList todoData={this.state.todoData} />
-        <TodoForm
-          task={this.state.task}
-          addTodo={this.addTodo}
-          handleChanges={this.handleChanges}
-        />
+        <TodoList todoData={this.state.todoData} toggleTodo={this.toggleTodo} />
+        <TodoForm addTodo={this.addTodo} clearCompleted={this.clearCompleted} />
       </div>
     );
   }

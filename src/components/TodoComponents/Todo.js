@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import './Todo.css';
 
 class Todo extends Component {
   render() {
     return (
-      <div>
-        <p>{this.props.todo.task}</p>
-      </div>
+      <li
+        className={`${this.props.todo.completed ? 'completed' : ''}`}
+        onClick={() => this.props.toggleTodo(this.props.todo.id)}
+      >
+        {this.props.todo.task}
+      </li>
     );
   }
 }

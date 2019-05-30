@@ -6,7 +6,13 @@ import Todo from './Todo';
 
 class TodoList extends Component {
   render() {
-    return this.props.todoData.map(todo => <Todo key={todo.id} todo={todo} />);
+    return (
+      <ul>
+        {this.props.todoData.map(todo => (
+          <Todo key={todo.id} todo={todo} toggleTodo={this.props.toggleTodo} />
+        ))}
+      </ul>
+    );
   }
 }
 
