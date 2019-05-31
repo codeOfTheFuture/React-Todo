@@ -36,7 +36,9 @@ class TodoForm extends Component {
           />
         </Form.Group>
 
-        <Button variant="primary">Add Todo</Button>
+        <Button variant="primary" onClick={this.addTodo}>
+          Add Todo
+        </Button>
         <Button variant="info" onClick={this.props.clearCompleted}>
           Clear Completed
         </Button>
