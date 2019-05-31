@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
 class TodoForm extends Component {
   constructor() {
@@ -25,18 +25,22 @@ class TodoForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.addTodo}>
-        <input
-          placeholder="Todo"
-          onChange={this.handleChanges}
-          value={this.state.task}
-          name="task"
-        />
-        <button variant="primary">Add Todo</button>
-        <button variant="danger" onClick={this.props.clearCompleted}>
+      <Form onSubmit={this.addTodo}>
+        <Form.Group>
+          <Form.Label>Add Todo</Form.Label>
+          <Form.Control
+            placeholder="Todo"
+            onChange={this.handleChanges}
+            value={this.state.task}
+            name="task"
+          />
+        </Form.Group>
+
+        <Button variant="primary">Add Todo</Button>
+        <Button variant="info" onClick={this.props.clearCompleted}>
           Clear Completed
-        </button>
-      </form>
+        </Button>
+      </Form>
     );
   }
 }

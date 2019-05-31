@@ -3,16 +3,16 @@
 
 import React, { Component } from 'react';
 import Todo from './Todo';
-// import 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 
 class TodoList extends Component {
   render() {
     return (
-      <ul>
+      <ListGroup>
         {this.props.todoData.map(todo => (
           <Todo key={todo.id} todo={todo} toggleTodo={this.props.toggleTodo} />
         ))}
-      </ul>
+      </ListGroup>
     );
   }
 }

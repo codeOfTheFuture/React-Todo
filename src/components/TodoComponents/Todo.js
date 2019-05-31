@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-// import 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 import './Todo.css';
 
 class Todo extends Component {
   render() {
     return (
-      <li
+      <ListGroup.Item
         className={`${this.props.todo.completed ? 'completed' : ''}`}
         onClick={() => this.props.toggleTodo(this.props.todo.id)}
       >
         {this.props.todo.task}
-      </li>
+      </ListGroup.Item>
     );
   }
 }

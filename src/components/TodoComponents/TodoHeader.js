@@ -1,11 +1,11 @@
 import React from 'react';
-// import 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 
 const TodoHeader = () => {
   return (
-    <header>
+    <Navbar bg="light" expand="lg">
       <h1>Todo List</h1>
-    </header>
+    </Navbar>
   );
 };
 

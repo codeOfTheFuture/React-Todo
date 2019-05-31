@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-// import TodoHeader from './components/TodoComponents/TodoHeader';
+import TodoHeader from './components/TodoComponents/TodoHeader';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import Container from 'react-bootstrap/Container';
 
 class App extends Component {
   // you will need a place to store your state in this component.
@@ -74,11 +75,11 @@ class App extends Component {
   render() {
     console.log(this.state.todoData);
     return (
-      <div className="container">
-        {/* <TodoHeader /> */}
+      <Container>
+        <TodoHeader />
         <TodoForm addTodo={this.addTodo} clearCompleted={this.clearCompleted} />
         <TodoList todoData={this.state.todoData} toggleTodo={this.toggleTodo} />
-      </div>
+      </Container>
     );
   }
 }
