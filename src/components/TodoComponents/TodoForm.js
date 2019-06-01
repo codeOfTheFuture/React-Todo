@@ -25,7 +25,7 @@ class TodoForm extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.addTodo}>
+      <Form className="mt-5" onSubmit={this.addTodo}>
         <Form.Group>
           <Form.Label>Add Todo</Form.Label>
           <Form.Control
@@ -39,7 +39,11 @@ class TodoForm extends Component {
         <Button variant="primary" onClick={this.addTodo}>
           Add Todo
         </Button>
-        <Button variant="info" onClick={this.props.clearCompleted}>
+        <Button
+          className="mx-2"
+          variant="info"
+          onClick={this.props.clearCompleted}
+        >
           Clear Completed
         </Button>
       </Form>

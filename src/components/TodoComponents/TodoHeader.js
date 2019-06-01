@@ -3,9 +3,9 @@ import { Navbar } from 'react-bootstrap';
 
 const TodoHeader = () => {
   return (
-    <Navbar bg="light" expand="lg">
-      <h1>Todo List</h1>
-    </Navbar>
+    <header className="bg-secondary">
+      <h1 className="text-light p-2">Todo List</h1>
+    </header>
   );
 };
 

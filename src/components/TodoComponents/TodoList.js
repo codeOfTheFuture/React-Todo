@@ -3,16 +3,22 @@
 
 import React, { Component } from 'react';
 import Todo from './Todo';
-import { ListGroup } from 'react-bootstrap';
+import { Jumbotron, ListGroup } from 'react-bootstrap';
 
 class TodoList extends Component {
   render() {
     return (
-      <ListGroup>
-        {this.props.todoData.map(todo => (
-          <Todo key={todo.id} todo={todo} toggleTodo={this.props.toggleTodo} />
-        ))}
-      </ListGroup>
+      <Jumbotron>
+        <ListGroup>
+          {this.props.todoData.map(todo => (
+            <Todo
+              key={todo.id}
+              todo={todo}
+              toggleTodo={this.props.toggleTodo}
+            />
+          ))}
+        </ListGroup>
+      </Jumbotron>
     );
   }
 }

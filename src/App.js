@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TodoHeader from './components/TodoComponents/TodoHeader';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
-import Container from 'react-bootstrap/Container';
+import { Container, Grid } from 'react-bootstrap';
 
 class App extends Component {
   // you will need a place to store your state in this component.
@@ -28,19 +28,20 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.setLocalStorage();
+  }
+
   toggleTodo = id => {
     this.setState(prevState => {
+      let newTodos = prevState.todoData.map(todo => {
+        return todo.id === id ? { ...todo, completed: !todo.completed } : todo;
+      });
+
+      localStorage.setItem('todos', JSON.stringify(newTodos));
+
       return {
-        todoData: prevState.todoData.map(todo => {
-          if (todo.id === id) {
-            return {
-              ...todo,
-              completed: !todo.completed
-            };
-          } else {
-            return todo;
-          }
-        })
+        todoData: newTodos
       };
     });
   };
@@ -53,6 +54,11 @@ class App extends Component {
     };
 
     this.setState(prevState => {
+      localStorage.setItem(
+        'todos',
+        JSON.stringify([...prevState.todoData, newTodo])
+      );
+
       return {
         todoData: [...prevState.todoData, newTodo]
       };
@@ -62,24 +68,47 @@ class App extends Component {
   clearCompleted = event => {
     event.preventDefault();
     this.setState(prevState => {
+      const filterTodos = prevState.todoData.filter(todo => {
+        if (!todo.completed) {
+          return todo;
+        }
+      });
+
+      localStorage.setItem('todos', JSON.stringify(filterTodos));
+
       return {
-        todoData: prevState.todoData.filter(todo => {
-          if (!todo.completed) {
-            return todo;
-          }
-        })
+        todoData: filterTodos
       };
     });
+  };
+
+  setLocalStorage = () => {
+    if (localStorage.getItem('todos') === null) {
+      let todos = [...this.state.todoData];
+      localStorage.setItem('todos', JSON.stringify(todos));
+    } else {
+      this.setState({
+        todoData: JSON.parse(localStorage.getItem('todos'))
+      });
+    }
   };
 
   render() {
     console.log(this.state.todoData);
     return (
-      <Container>
+      <div>
         <TodoHeader />
-        <TodoForm addTodo={this.addTodo} clearCompleted={this.clearCompleted} />
-        <TodoList todoData={this.state.todoData} toggleTodo={this.toggleTodo} />
-      </Container>
+        <Container>
+          <TodoForm
+            addTodo={this.addTodo}
+            clearCompleted={this.clearCompleted}
+          />
+          <TodoList
+            todoData={this.state.todoData}
+            toggleTodo={this.toggleTodo}
+          />
+        </Container>
+      </div>
     );
   }
 }
